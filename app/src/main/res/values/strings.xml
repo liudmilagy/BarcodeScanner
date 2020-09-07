@@ -3,4 +3,6 @@
     <string name="backgroundText">background</string>
     <string name="newOrderText">Новый заказ</string>
     <string name="startScanning">Начать сканировать</string>
+    <string name="barcodeText">Штрихкод:</string>
+    <string name="scanText">Сканировать</string>
 </resources>

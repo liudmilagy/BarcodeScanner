@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -28,7 +29,7 @@ public class ScanningActivity extends AppCompatActivity {
         private CameraSource cameraSource;
         private static final int REQUEST_CAMERA_PERMISSION = 201;
         private ToneGenerator toneGen1;
-        private TextView barcodeText;
+//        private TextView barcodeText;
         private String barcodeData;
 
 
@@ -38,7 +39,7 @@ public class ScanningActivity extends AppCompatActivity {
             setContentView(R.layout.activity_scanning);
             toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
             surfaceView = findViewById(R.id.surface_view);
-            barcodeText = findViewById(R.id.barcode_text);
+//            barcodeText = findViewById(R.id.barcode_text);
             initialiseDetectorsAndSources();
         }
 
@@ -96,25 +97,31 @@ public class ScanningActivity extends AppCompatActivity {
                     if (barcodes.size() != 0) {
 
 
-                        barcodeText.post(new Runnable() {
-
-                            @Override
-                            public void run() {
+//                        barcodeText.post(new Runnable() {
+//
+//                            @Override
+//                            public void run() {
 
                                 if (barcodes.valueAt(0).email != null) {
-                                    barcodeText.removeCallbacks(null);
+//                                    barcodeText.removeCallbacks(null);
                                     barcodeData = barcodes.valueAt(0).email.address;
-                                    barcodeText.setText(barcodeData);
+//                                    barcodeText.setText(barcodeData);
                                     toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
                                 } else {
 
                                     barcodeData = barcodes.valueAt(0).displayValue;
-                                    barcodeText.setText(barcodeData);
+//                                    barcodeText.setText(barcodeData);
                                     toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
-
                                 }
-                            }
-                        });
+
+                                if (barcodeData != null || barcodeData != "") {
+                                    Intent intent = new Intent();
+                                    intent.putExtra("barcode", barcodeData);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
+                                }
+//                            }
+//                        });
 
                     }
                 }
