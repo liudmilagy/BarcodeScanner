@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BarcodeScanner</string>
+    <string name="backgroundText">background</string>
+    <string name="newOrderText">Новый заказ</string>
+    <string name="startScanning">Начать сканировать</string>
 </resources>
